@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "id": "e102fcb5-c101-4277-9687-4947ef060b49",
+      "name": "이혜림",
+      "date": "2022-09-04",
+      "title": "첫 일기를 쓰자",
+      "imgurl": "C:\\fakepath\\멋쟁이토마토.jpeg",
+      "sayme": "뿌듯하다",
+      "desc": "하하"
+    },
+    {
+      "id": "30d2d666-16c2-47f2-97f1-0a14d8cedd51",
+      "name": "이혜림",
+      "date": "2022-09-04",
+      "title": "제목 수정하고",
+      "imgurl": "C:\\fakepath\\greencdp.jpeg",
+      "sayme": "이미지 재업하고",
+      "desc": "내용도 입력"
+    },
+    {
+      "id": "775f83b1-d684-4267-b284-c6c50f288287",
+      "name": "3번작성자",
+      "date": "2022-09-04",
+      "title": "3번 제목 수정",
+      "imgurl": "C:\\fakepath\\greenfolder.jpeg",
+      "sayme": "3번 한마디 수정",
+      "desc": "과연 알림이 잘 뜨나 보자"
+    },
+    {
+      "id": "8164f6a4-88ca-4fdd-8796-eca160e9c7b5",
+      "name": "이혜림",
+      "date": "2022-09-06",
+      "title": "제목을 입력하고",
+      "imgurl": "C:\\fakepath\\egg.jpeg",
+      "sayme": "한마디를 입력하고 ",
+      "desc": "내용을 입력하겠습니다."
+    },
+    {
+      "id": "8f25936b-6b99-4a9d-9c6a-c0a106689f57",
+      "name": "이혜림",
+      "date": "2022-09-05",
+      "title": "ㄴㅇㄹㄴㅇㄹ",
+      "imgurl": "C:\\fakepath\\eximg.jpg",
+      "sayme": "ㅈㄷㅈㄷㄹㅈㄹ",
+      "desc": "ㄴㄹㄴㅇ"
+    },
+    {
+      "id": "504ed217-a14c-421d-b077-c192130f5bdd",
+      "name": "일기를",
+      "date": "2022-09-04",
+      "title": "하나 더 ",
+      "imgurl": "C:\\fakepath\\멋쟁이토마토.jpeg",
+      "sayme": "써봅시다",
+      "desc": "붙어랏"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
