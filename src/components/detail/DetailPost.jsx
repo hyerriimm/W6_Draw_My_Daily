@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
-import { __getPosts, updatePost } from '../../redux/modules/postsSlice';
+import { __getPosts, updatePost, deletePost } from '../../redux/modules/postsSlice';
 
 function DetailPost() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {id} = useParams();
     const [isEditMode, setIsEditMode] = useState(false);
     const { isLoading, error, posts } = useSelector((state) => state.posts);
@@ -52,6 +53,13 @@ function DetailPost() {
       setUpdatedPost(initialState);}
     };
 
+    const onDeleteHandler = () => {
+      if (window.confirm('일기를 삭제하시겠습니까?')) {
+        dispatch(deletePost(id));
+        navigate('/');
+      }
+    };
+
     if (isLoading) {
       return <div>로딩 중....</div>;
     };
@@ -66,8 +74,8 @@ function DetailPost() {
         {isEditMode ? (
           <div>
             <BtnGroup>
-              <button onClick={onSaveBtnHandler}>저장하기</button>
-              <button>삭제하기</button>
+              <button onClick={onSaveBtnHandler}>저장</button>
+              <button onClick={()=>{setIsEditMode(false)}}>취소</button>
             </BtnGroup>
             <NameDiv>
               <div>작성자 : {postObj.name}</div>
@@ -107,8 +115,8 @@ function DetailPost() {
         ) : (
           <div>
             <BtnGroup>
-              <button onClick={()=>{setIsEditMode(true);}}>수정하기</button>
-              <button>삭제하기</button>
+              <button onClick={()=>{setIsEditMode(true);}}>수정</button>
+              <button onClick={onDeleteHandler}>삭제</button>
             </BtnGroup>
             <NameDiv>
               <div>작성자 : {postObj.name}</div>
