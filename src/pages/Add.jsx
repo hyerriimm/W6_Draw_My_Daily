@@ -7,7 +7,6 @@ import Form from '../components/form/Form';
 function Add() {
     return (
       <Layout>
-        <Header />
         <Form />
       </Layout>
     );

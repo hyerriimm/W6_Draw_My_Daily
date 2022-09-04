@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PostList(props) {
+function PostList() {
     return (
         <div>
             

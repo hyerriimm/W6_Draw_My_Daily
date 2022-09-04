@@ -11,7 +11,6 @@ const Router = () => {
             <Route path ="/" exact element={<Home/>}/>
             <Route path ="/Add" exact element={<Add/>}/>
             <Route path ="/detail/:id" exact element={<Detail/>}/>
-            <Route path ="*" element={<div>잘못된 페이지입니다.</div>}/>
         </Routes>
     )
 }

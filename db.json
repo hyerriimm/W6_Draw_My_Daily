@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "name": "회원1",
+      "content": "dfsda",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "name": "회원2",
+      "content": "dsl;kpr",
+      "postId": 2
+    },
+    {
+      "name": "이름",
+      "content": "내용",
+      "postId": 3,
+      "id": 3
+    },
+    {
+      "name": "ㅇㄴㄹ",
+      "content": "ㄴㅇㄻ",
+      "postId": 3,
+      "id": 4
+    },
+    {
+      "name": "ㅏㅓㅏㅏ",
+      "content": "ㅏㅏㅏㅏ",
+      "postId": 3,
+      "id": 5
+    },
+    {
+      "name": "ㅇㄴㄹ",
+      "content": "ㅁㅇㄹㄹ",
+      "postId": 2,
+      "id": 6
+    },
+    {
+      "name": "ㅇㄴㄹㅇㅁㄹㄴ",
+      "content": "ㅁㅇㄹㄹ",
+      "postId": 2,
+      "id": 7
+    },
+    {
+      "name": "ㅇㄴㄹㅇㅁㄹㄴ",
+      "content": "ㅁㅇㄹㄹㄹㄹ",
+      "postId": 2,
+      "id": 8
+    },
+    {
+      "name": "ㅇㄴ",
+      "content": "ㄹㅇㄴㄷ",
+      "postId": 1,
+      "id": 9
+    },
+    {
+      "name": "ㅇㄴ",
+      "content": "ㄹㅇㄴㄷ",
+      "postId": 1,
+      "id": 10
+    },
+    {
+      "name": "가나다라 마바사",
+      "content": "ㅇㅁㄹ다ㅏㅣㄴㄹ",
+      "postId": 1,
+      "id": 11
+    },
+    {
+      "name": "가나다라 마바사",
+      "content": "ㅇㅁㄹ다ㅏㅣㄴㄹ",
+      "postId": 1,
+      "id": 12
+    }
+  ]
+}
