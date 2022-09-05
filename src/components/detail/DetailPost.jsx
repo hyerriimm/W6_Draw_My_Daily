@@ -27,10 +27,10 @@ function DetailPost() {
       id: id,
       name: postObj.name,
       date: postObj.date,
-      title:"",
-      imgurl:"",
-      sayme:"",
-      desc:"",
+      title: postObj.title,
+      imgurl: "",
+      sayme: postObj.sayme,
+      desc: postObj.desc,
     };
     const [updatedPost, setUpdatedPost] = useState(initialState);
 
@@ -51,6 +51,7 @@ function DetailPost() {
       {dispatch(updatePost(updatedPost));
       setIsEditMode(false);
       setUpdatedPost(initialState);}
+      dispatch(__getPosts()); //수정 후 바로 수정된게 안보여서 추가해봄
     };
 
     const onDeleteHandler = () => {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 import { createPost } from '../../redux/modules/postsSlice';
 
@@ -10,7 +9,6 @@ function Form() {
   const navigate = useNavigate();
 
   const initialState = {
-    id: 0,
     name: "",
     date: "",
     title:"",
@@ -27,12 +25,12 @@ function Form() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(createPost({...inputValue, id: uuidv4()}));
+    dispatch(createPost(inputValue));
     setInputValue(initialState);
     navigate('/');
   };
 
-  console.log(inputValue);
+  // console.log(inputValue);
 
   return (
     <div>
@@ -77,7 +75,7 @@ function Form() {
           value={inputValue.title} 
           required
           placeholder="제목을 입력해주세요." 
-          maxLength={20}/>
+          maxLength={15}/>
         </TitleDiv>
         <WordDiv>
           <label>수고한 자신에게 한마디</label>
@@ -88,7 +86,7 @@ function Form() {
           value={inputValue.sayme} 
           required
           placeholder="나에게 해주는 한마디를 입력해주세요."
-          maxLength={20}/>
+          maxLength={15}/>
         </WordDiv>
         <DescDiv>
           <label>내용</label>

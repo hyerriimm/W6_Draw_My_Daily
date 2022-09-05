@@ -18,7 +18,7 @@ function Home() {
 
 export default Home;
 
-const AddBtnDiv = styled.button`
+const AddBtnDiv = styled.div`
   border: transparent;
   background-color: #fff8f0;
   display: flex;

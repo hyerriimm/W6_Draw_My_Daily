@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
 import Post from './Post';
 import { __getPosts } from "../../redux/modules/postsSlice";
 
@@ -35,9 +36,9 @@ function PostList() {
       {posts
         ?.slice()
         .reverse()
-        .map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
+        .map((post) => {
+          return <Post key={uuidv4()} post={post} />;
+        })}
     </StContainer>
   );
 }
