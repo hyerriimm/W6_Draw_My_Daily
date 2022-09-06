@@ -1,0 +1,16 @@
+{
+  "comments": [
+    {
+      "name": "여기는",
+      "content": "2번페이지",
+      "postId": "2",
+      "id": 5
+    }
+  ],
+  "login": [
+    {
+      "name": "여기는",
+      "password": "2번"
+    }
+  ]
+}
