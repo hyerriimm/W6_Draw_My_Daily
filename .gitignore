@@ -5,7 +5,10 @@
 /.pnp
 .pnp.js
 .db.json
+<<<<<<< HEAD
+=======
 
+>>>>>>> c949e220cbf205c10944e0a5c09966015229a539
 
 # testing
 /coverage

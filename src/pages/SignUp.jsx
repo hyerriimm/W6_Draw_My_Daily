@@ -1,11 +1,17 @@
 import React from 'react'
-import SignupForm from '../components/loginSignup/SignupForm'
+import SignupForm from '../components/loginSignup/SignupForm';
+import Layout from '../components/layout/Layout'
+
 
 const SignUp = () => {
   return (
-    <div>
-      <SignupForm />
-    </div>
+
+     <Layout>
+              <SignupForm />
+     </Layout>
+
+        
+   
   )
 }
 
