@@ -11,18 +11,18 @@ function Post({post}) {
     return (
       <StTodo
         onClick={() => {
-          navigate(`/detail/${post.id}`);
+          navigate(`/detail/${post?.id}`);
         }}
       >
-        <div>날짜ㅣ {post.date}</div>
+        <div>날짜ㅣ {post?.date}</div>
         <hr style={{ margin: 1 }}></hr>
-        <Img>{post.imgurl}</Img>
+        <img alt="" src={post?.imgurl} style={{width:"260px", height:"175px"}}></img>
         <hr style={{ margin: 1 }}></hr>
-        <div>제목ㅣ {post.title}</div>
+        <div>제목ㅣ {post?.title}</div>
         <hr style={{ margin: 1 }}></hr>
         <Sayme>
           <div>수고한 자신에게 한마디</div>
-          <div>"{post.sayme}"</div>
+          <div>"{post?.sayme}"</div>
         </Sayme>
         <DescImg>
           <div> ..... 내 용 더 보 기</div>
@@ -53,12 +53,6 @@ cursor: pointer;
 &:hover{
   box-shadow: 1px 1px 10px #c4c4c4;
 }
-`;
-
-const Img = styled.div`
-  width: 260px;
-  height: 175px;
-  background-color: #dbeeff;
 `;
 
 const Sayme = styled.div`

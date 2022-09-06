@@ -31,7 +31,7 @@ const StContainer = styled.div`
     justify-content: space-between;
     height: 30px;
     padding: 10px;
-    background-color: #e7f3ff
+    background-color: #e7f3ff;
 `;
 
 const HomeBtn = styled.button`

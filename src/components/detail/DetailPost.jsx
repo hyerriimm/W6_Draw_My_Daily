@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
-import { __getPosts, updatePost, deletePost } from '../../redux/modules/postsSlice';
+import { __getPosts, __updatePosts, __deletePosts } from '../../redux/modules/postsSlice';
+import axios from 'axios';
 
 function DetailPost() {
     const dispatch = useDispatch();
@@ -11,7 +12,9 @@ function DetailPost() {
     const [isEditMode, setIsEditMode] = useState(false);
     const { isLoading, error, posts } = useSelector((state) => state.posts);
 
-    // console.log(posts);
+    useEffect(()=> {
+      dispatch(__getPosts());
+    }, []);
 
     let postObj = posts.find((post)=>{
       if (String(post.id) === id) {
@@ -20,46 +23,49 @@ function DetailPost() {
         return null
       }
     });
-    // console.log(postObj);
-    // find는 조건을 만족하는 배열의 첫 번째 요소의 '값'을 반환함.
 
-    const initialState = {
-      id: id,
-      name: postObj.name,
-      date: postObj.date,
-      title: postObj.title,
-      imgurl: "",
-      sayme: postObj.sayme,
-      desc: postObj.desc,
-    };
-    const [updatedPost, setUpdatedPost] = useState(initialState);
+  const [name, setName] = useState(postObj.name);
+  const [date, setDate] = useState(postObj.date);
+  const [title, setTitle] = useState("");
+  const [imgurl, setImgurl] = useState();
+  const [fileImage, setFileImage] = useState("");
+  const [sayme, setSayme] = useState("");
+  const [desc, setDesc] = useState("");
+  
+  const onChangeImg = (e) => {
+    console.log(e.target.files);
+    setImgurl(e.target.files[0]);
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
 
-    useEffect(()=> {
-      dispatch(__getPosts());
-    }, [dispatch]);
+  const onSaveBtnHandler = async (e) => {
+    if (
+      title.trim() === '' ||
+      imgurl.trim() === '' ||
+      sayme.trim() === '' ||
+      desc.trim() === ''
+    ) {
+      return alert('모든 항목을 입력하고 저장하세요.');
+    } else if (window.confirm('수정사항을 저장하시겠습니까?'))
+      {
+        const formData = new FormData();
+        formData.append('imgurl', imgurl);
+        formData.append('name', name);
+        formData.append('date', date);
+        formData.append('title', title);
+        formData.append('sayme', sayme);
+        formData.append('desc', desc);
+        dispatch(__updatePosts(formData));
+        setIsEditMode(false);
+    }
+  };
 
-    const onSaveBtnHandler = () => {
-      if (
-        updatedPost.title.trim() === '' ||
-        updatedPost.imgurl.trim() === '' ||
-        updatedPost.sayme.trim() === '' ||
-        updatedPost.desc.trim() === ''
-      ) {
-        return alert('모든 항목을 입력하고 저장하세요.');
-      }
-      else if (window.confirm('수정사항을 저장하시겠습니까?'))
-      {dispatch(updatePost(updatedPost));
-      setIsEditMode(false);
-      setUpdatedPost(initialState);}
-      dispatch(__getPosts()); //수정 후 바로 수정된게 안보여서 추가해봄
-    };
-
-    const onDeleteHandler = () => {
-      if (window.confirm('일기를 삭제하시겠습니까?')) {
-        dispatch(deletePost(id));
-        navigate('/');
-      }
-    };
+  const onDeleteHandler = () => {
+    if (window.confirm('일기를 삭제하시겠습니까?')) {
+      dispatch(__deletePosts(id));
+      navigate('/');
+    }
+  };
 
     if (isLoading) {
       return <div>로딩 중....</div>;
@@ -69,11 +75,10 @@ function DetailPost() {
     };
     
 
-
     return (
       <>
         {isEditMode ? (
-          <div>
+          <>
             <BtnGroup>
               <button onClick={onSaveBtnHandler}>저장</button>
               <button onClick={()=>{setIsEditMode(false)}}>취소</button>
@@ -87,32 +92,40 @@ function DetailPost() {
             <TitleDiv>
               <div>제목</div>
               <input 
-              value={updatedPost.title}
+              value={title}
               maxLength={100}
-              onChange={(e)=>{setUpdatedPost({...updatedPost, title: e.target.value});}}/>
+              onChange={(e)=>{setTitle(e.target.value);}}/>
             </TitleDiv>
             <ImgDiv>
-              <p>이미지 재업로드</p>
+              <lable>이미지 재업로드</lable>
               <input 
-              value={updatedPost.imgurl}
-              onChange={(e)=>{setUpdatedPost({...updatedPost, imgurl: e.target.value});}}type='file'/>
+              type='file' 
+              accept='image/*' 
+              name='imgurl'
+              className='imginput'
+              onChange={onChangeImg}
+              />
+              <img 
+              alt=""
+              src={fileImage} 
+              style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 : </div>
               <input 
-              value={updatedPost.sayme}
+              value={sayme}
               maxLength={100}
-              onChange={(e)=>{setUpdatedPost({...updatedPost, sayme: e.target.value});}}/>
+              onChange={(e)=>{setSayme(e.target.value);}}/>
             </WordDiv>
             <DescDiv>
               <div>내용: </div>
               <textarea 
-              value={updatedPost.desc}
+              value={desc}
               maxLength={300}
               rows="10"
-              onChange={(e)=>{setUpdatedPost({...updatedPost, desc: e.target.value});}}/>
+              onChange={(e)=>{setDesc(e.target.value);}}/>
             </DescDiv>
-          </div>
+          </>
         ) : (
           <div>
             <BtnGroup>
@@ -129,7 +142,8 @@ function DetailPost() {
               <div>제목 : {postObj.title}</div>
             </TitleDiv>
             <ImgDiv>
-              <div>{postObj.imgurl}</div>
+              {/* <div>{postObj.imgurl}</div> */}
+              <img alt="" scr={postObj.imgurl}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 :  {postObj.sayme}</div>
@@ -195,23 +209,3 @@ const DescDiv = styled.div`
   flex-direction: column;
   padding: 5px 20px;
 `;
-
-// const PostingBtnDiv = styled.div`
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// border: transparent;
-// padding: 5px 20px;
-// button {
-//     background-color: #8ab38c;
-//     color: white;
-//     border: transparent;
-//     border-radius: 10px;
-//     width: 100px;
-//     height: 30px;
-//     :hover {
-//         box-shadow: 1px 1px 5px #c7c7c7;
-//     }
-//     cursor: pointer;
-// }
-// `;

@@ -8,10 +8,12 @@ import { __getPosts } from "../../redux/modules/postsSlice";
 function PostList() {
   const dispatch = useDispatch();
   const { isLoading, error, posts } = useSelector((state) => state.posts);
+  // const state = useSelector((state) => state);
+  // console.log(state);
 
   useEffect(() => {
     dispatch(__getPosts());
-  }, [dispatch]);
+  }, []);
 
   if (isLoading) {
     return <Loading>로딩 중•••</Loading>;
@@ -72,13 +74,6 @@ const Empty = styled.h1`
 `;
 
 const StContainer = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: flex-start; */
-  /* flex-wrap: wrap; */
-  /* align-content: flex-start; */
-  /* margin: 0 auto; */
-
   margin: 0 auto;                 
   padding-left: 10px;         
 `;
