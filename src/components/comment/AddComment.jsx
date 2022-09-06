@@ -20,18 +20,17 @@ function AddComment() {
     e.preventDefault();
     dispatch(_addComnents({ name, content, postId }));
   };
+
+  const userID = localStorage.getItem("name")
+  // console.log(userID)
+
+
+
   return (
     <>
-      {" "}
       <AddFormContainer onSubmit={addComment}>
-        이름
-        <Input
-          width="100px"
-          type="text"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        ></Input>
+        User
+        <Input value = {userID} />
         내용
         <Input
           width="500px"

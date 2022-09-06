@@ -6,7 +6,7 @@ import CommentList from "../components/comment/CommentList"
 const Detail = () => {
     return (
       <Layout>
-        <DetailPost />
+        {/* <DetailPost /> */}
         <CommentList />
       </Layout>
     );

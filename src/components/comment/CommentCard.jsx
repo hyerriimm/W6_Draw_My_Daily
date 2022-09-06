@@ -10,6 +10,8 @@ function CommentCard({ data }) {
   const removeComment = () => {
     dispatch(_deleteComnents(data.id));
   };
+  // console.log(data)
+  // console.log(data.content)
 
   return (
     <div style={{display:"flex", alignItems:"center"}} className="commentContainer">
@@ -20,7 +22,7 @@ function CommentCard({ data }) {
       ></img>
 
         <div style ={{display:"flex", flexDirection:"column",padding: "0 20px", width:"700px"}}>
-          <div style={{ fontSize: "13px" }}>{data.name}</div> <div>{data.content}</div>
+          <div style={{ fontSize: "13px" }}>{data.user_name}</div> <div>{data.content}</div>
           </div>
           
      
@@ -32,10 +34,12 @@ function CommentCard({ data }) {
               removeComment();
             }}
           >
-            삭제{" "}
+            삭제
           </Button>
-          <Button bgColor="#c0eb75">수정</Button>
+          {/* <Button bgColor="#c0eb75">수정</Button> */}
         </div>
+
+
       
     </div>
   );

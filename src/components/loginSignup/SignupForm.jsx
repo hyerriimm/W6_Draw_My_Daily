@@ -52,6 +52,8 @@ const SignupForm = () => {
 
   return (
     <div>
+      
+
       <RegisterForm
         onSubmit= {onSubmitHandler}
       >
