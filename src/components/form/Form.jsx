@@ -2,57 +2,54 @@ import React, { useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
-// import { createPost } from '../../redux/modules/postsSlice';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { __createPostImage,__createPosts } from '../../redux/modules/postsSlice';
 
 function Form() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
-  const [imgurl, setImgurl] = useState();
-  const [fileImage, setFileImage] = useState("");
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState("");
   const [sayme, setSayme] = useState("");
-  const [desc, setDesc] = useState("");
-  
-  const onChangeImg = (e) => {
+  const [content, setContent] = useState("");
+
+  const userId = localStorage.getItem('name');
+
+  const postWithoutImage = {
+    user_name: userId,
+    date: date,
+    title: title,
+    sayme: sayme,
+    content: content,
+  };
+
+  const onChangeImage = (e) => {
     console.log(e.target.files);
-    setImgurl(e.target.files[0]);
-    setFileImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
     // FOR BUG IN CHROME
     // e.target.value = "";
   };
 
-  const onSubmitHandler = async (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
-    const formData = new FormData(document.getElementById("formid"));
-    //ㄴ 자동으로 <form>안의 것들을 FormData로 만들어주는듯
-    // formData.append('imgurl', imgurl);
-    // formData.append('name', name);
-    // formData.append('date', date);
-    // formData.append('title', title);
-    // formData.append('sayme', sayme);
-    // formData.append('desc', desc);
-      axios.post("http://3.36.71.186:8080/api/auth/posts", formData,{  // 게시글 보내기
-          headers:{
-          "Content-Type":"multipart/form-data",
-      }})
-      .then((response) => {
-          alert("그림일기 추가 완료!")
-          navigate("/")
-      })
-      .catch((error) => {
-          console.log(error);
-      })
-    setName("");
+    const formDataImage = new FormData();
+    formDataImage.append('image', image);
+
+    dispatch(__createPostImage(formDataImage));
+    dispatch(__createPosts(postWithoutImage));
+
+    navigate('/');
+
     setDate("");
     setTitle("");
-    setImgurl();
-    setFileImage("");
+    setImage();
+    setPreview("");
     setSayme("");
-    setDesc("");
+    setContent("");
   };
 
 
@@ -63,11 +60,8 @@ function Form() {
         <label>작성자</label>
         <input 
         type='text' 
-        name='name' 
-        onChange={(e)=>{setName(e.target.value);}}
-        value={name}
-        required 
-        placeholder="이름을 입력해주세요."
+        name='user_name' 
+        value={userId}
         maxLength={10}/>
         </NameDiv>
         <DateDiv>
@@ -85,13 +79,13 @@ function Form() {
           <input 
           type='file' 
           accept='image/*' 
-          name='imgurl'
+          name='image'
           className='imginput'
-          onChange={onChangeImg}
+          onChange={onChangeImage}
           />
           <img 
-          alt=""
-          src={fileImage} 
+          alt="이미지를 업로드 해주세요."
+          src={preview} 
           style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
         </ImgDiv>
         <TitleDiv>
@@ -116,17 +110,17 @@ function Form() {
           placeholder="나에게 해주는 한마디를 입력해주세요."
           maxLength={15}/>
         </WordDiv>
-        <DescDiv>
+        <ContentDiv>
           <label>내용</label>
           <textarea 
-          name='desc'
-          onChange={(e)=>{setDesc(e.target.value);}}
-          value={desc} 
+          name='content'
+          onChange={(e)=>{setContent(e.target.value);}}
+          value={content} 
           required
           placeholder="내용을 입력해주세요."
           rows="10"
           maxLength={300}/>
-        </DescDiv>
+        </ContentDiv>
         <PostingBtnDiv>
             <button>일기 추가</button>
         </PostingBtnDiv>
@@ -175,7 +169,7 @@ const WordDiv = styled.div`
   padding: 5px 20px;
 `;
 
-const DescDiv = styled.div`
+const ContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5px 20px;

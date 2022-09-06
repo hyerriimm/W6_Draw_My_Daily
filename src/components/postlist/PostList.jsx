@@ -8,12 +8,11 @@ import { __getPosts } from "../../redux/modules/postsSlice";
 function PostList() {
   const dispatch = useDispatch();
   const { isLoading, error, posts } = useSelector((state) => state.posts);
-  // const state = useSelector((state) => state);
-  // console.log(state);
+  console.log(posts);
 
   useEffect(() => {
     dispatch(__getPosts());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return <Loading>로딩 중•••</Loading>;
