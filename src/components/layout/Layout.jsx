@@ -3,12 +3,15 @@ import styled from 'styled-components';
 import Header from '../header/Header';
 
 function Layout({ children }) {
-  return (
-    <>
-      <Header />
-      <StLayout>{children}</StLayout>
-    </>
-  );
+
+    return (
+        <div>
+            <Header />
+            <StLayout>
+                {children}
+            </StLayout>
+        </div>
+    );
 }
 
 export default Layout;
