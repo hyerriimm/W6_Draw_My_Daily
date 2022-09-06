@@ -1,20 +1,58 @@
 import React from 'react';
-import Button from '../common/Button';
-import {logout} from '../../redux/modules/users'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import styled from "styled-components";
 
 function Header() {
-
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     return (
-        <div style={{display:"flex"}}>
-      <Button bgColor="#e599f7" onClick={()=>{navigate("/login")}} >로그인하기</Button>
-      <Button bgColor="black" onClick={()=>{dispatch(logout())}} >로그아웃</Button>
+      <StContainer>
+        <HomeBtn
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          ↩ Home
+        </HomeBtn>
+        <StText>Draw My Daily</StText>
+        <div>
+          <Stbutton>My Page</Stbutton>
+          <Stbutton>Login</Stbutton>
         </div>
+      </StContainer>
     );
 }
 
 export default Header;
+
+const StContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    padding: 10px;
+    background-color: #e7f3ff;
+`;
+
+const HomeBtn = styled.button`
+    margin: 0 10px;
+    font-size: 17px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+`;
+
+const Stbutton = styled.button`
+    margin: 0 10px;
+    font-size: 17px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+`;
+
+const StText = styled.div`
+    /* margin: 0 20px; */
+    margin-left: 80px;
+    font-size: 20px;
+    font-style: italic;
+`;
