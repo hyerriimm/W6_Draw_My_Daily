@@ -28,22 +28,7 @@
       "id": 3
     },
     {
-      "name": "4번",
-      "date": "2022-09-08",
-      "title": "4번4번",
-      "imgurl": "C:\\fakepath\\greenfolder.jpeg",
-      "sayme": "4번4번",
-      "desc": "4번4번",
       "id": 4
-    },
-    {
-      "name": "5번",
-      "date": "2022-09-09",
-      "title": "5번",
-      "imgurl": "C:\\fakepath\\tape.jpeg",
-      "sayme": "5번",
-      "desc": "5번",
-      "id": 5
     }
   ],
   "comments": [

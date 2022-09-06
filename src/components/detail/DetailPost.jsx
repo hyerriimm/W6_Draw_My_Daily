@@ -14,7 +14,7 @@ function DetailPost() {
 
     useEffect(()=> {
       dispatch(__getPosts());
-    }, []);
+    }, [isEditMode]);
 
     let postObj = posts.find((post)=>{
       if (String(post.id) === id) {
@@ -30,7 +30,7 @@ function DetailPost() {
   const [imgurl, setImgurl] = useState();
   const [fileImage, setFileImage] = useState("");
   const [sayme, setSayme] = useState("");
-  const [desc, setDesc] = useState("");
+  const [content, setContent] = useState("");
   
   const onChangeImg = (e) => {
     console.log(e.target.files);
@@ -43,7 +43,7 @@ function DetailPost() {
       title.trim() === '' ||
       imgurl.trim() === '' ||
       sayme.trim() === '' ||
-      desc.trim() === ''
+      content.trim() === ''
     ) {
       return alert('모든 항목을 입력하고 저장하세요.');
     } else if (window.confirm('수정사항을 저장하시겠습니까?'))
@@ -54,7 +54,7 @@ function DetailPost() {
         formData.append('date', date);
         formData.append('title', title);
         formData.append('sayme', sayme);
-        formData.append('desc', desc);
+        formData.append('content', content);
         dispatch(__updatePosts(formData));
         setIsEditMode(false);
     }
@@ -117,14 +117,14 @@ function DetailPost() {
               maxLength={100}
               onChange={(e)=>{setSayme(e.target.value);}}/>
             </WordDiv>
-            <DescDiv>
+            <ContentDiv>
               <div>내용: </div>
               <textarea 
-              value={desc}
+              value={content}
               maxLength={300}
               rows="10"
-              onChange={(e)=>{setDesc(e.target.value);}}/>
-            </DescDiv>
+              onChange={(e)=>{setContent(e.target.value);}}/>
+            </ContentDiv>
           </>
         ) : (
           <div>
@@ -148,9 +148,9 @@ function DetailPost() {
             <WordDiv>
               <div>수고한 자신에게 한마디 :  {postObj.sayme}</div>
             </WordDiv>
-            <DescDiv>
-              <div>내용: {postObj.desc}</div>
-            </DescDiv>
+            <ContentDiv>
+              <div>내용: {postObj.content}</div>
+            </ContentDiv>
           </div>
         )}
       </>
@@ -204,7 +204,7 @@ const WordDiv = styled.div`
   padding: 5px 20px;
 `;
 
-const DescDiv = styled.div`
+const ContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
