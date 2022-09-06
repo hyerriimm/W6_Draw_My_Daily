@@ -1,11 +1,9 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import descImage1 from '../../assets/images/descImage1.png'
 
 function Post({post}) {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
     return (
@@ -16,7 +14,7 @@ function Post({post}) {
       >
         <div>날짜ㅣ {post?.date}</div>
         <hr style={{ margin: 1 }}></hr>
-        <img alt="" src={post?.imgurl} style={{width:"260px", height:"175px"}}></img>
+        <img alt="" src={post?.image} style={{width:"260px", height:"175px"}}></img>
         <hr style={{ margin: 1 }}></hr>
         <div>제목ㅣ {post?.title}</div>
         <hr style={{ margin: 1 }}></hr>

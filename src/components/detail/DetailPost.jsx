@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import { __getPosts, __updatePosts, __deletePosts } from '../../redux/modules/postsSlice';
-import axios from 'axios';
 
 function DetailPost() {
     const dispatch = useDispatch();
@@ -14,7 +13,7 @@ function DetailPost() {
 
     useEffect(()=> {
       dispatch(__getPosts());
-    }, [isEditMode]);
+    }, [dispatch, isEditMode]);
 
     let postObj = posts.find((post)=>{
       if (String(post.id) === id) {
@@ -24,24 +23,26 @@ function DetailPost() {
       }
     });
 
-  const [name, setName] = useState(postObj.name);
+    console.log(postObj);
+
+  const [user_name, setUser_Name] = useState(postObj.user_name);
   const [date, setDate] = useState(postObj.date);
   const [title, setTitle] = useState("");
-  const [imgurl, setImgurl] = useState();
-  const [fileImage, setFileImage] = useState("");
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState("");
   const [sayme, setSayme] = useState("");
   const [content, setContent] = useState("");
   
   const onChangeImg = (e) => {
     console.log(e.target.files);
-    setImgurl(e.target.files[0]);
-    setFileImage(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
   };
 
   const onSaveBtnHandler = async (e) => {
     if (
       title.trim() === '' ||
-      imgurl.trim() === '' ||
+      image.trim() === '' ||
       sayme.trim() === '' ||
       content.trim() === ''
     ) {
@@ -49,8 +50,8 @@ function DetailPost() {
     } else if (window.confirm('수정사항을 저장하시겠습니까?'))
       {
         const formData = new FormData();
-        formData.append('imgurl', imgurl);
-        formData.append('name', name);
+        formData.append('image', image);
+        formData.append('user_name', user_name);
         formData.append('date', date);
         formData.append('title', title);
         formData.append('sayme', sayme);
@@ -84,7 +85,7 @@ function DetailPost() {
               <button onClick={()=>{setIsEditMode(false)}}>취소</button>
             </BtnGroup>
             <NameDiv>
-              <div>작성자 : {postObj.name}</div>
+              <div>작성자 : {postObj.user_name}</div>
             </NameDiv>
             <DateDiv>
               <div>날짜 : {postObj.date}</div>
@@ -101,13 +102,13 @@ function DetailPost() {
               <input 
               type='file' 
               accept='image/*' 
-              name='imgurl'
+              name='image'
               className='imginput'
               onChange={onChangeImg}
               />
               <img 
-              alt=""
-              src={fileImage} 
+              alt="이미지를 업로드 해주세요."
+              src={preview} 
               style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
             </ImgDiv>
             <WordDiv>
@@ -133,7 +134,7 @@ function DetailPost() {
               <button onClick={onDeleteHandler}>삭제</button>
             </BtnGroup>
             <NameDiv>
-              <div>작성자 : {postObj.name}</div>
+              <div>작성자 : {postObj.user_name}</div>
             </NameDiv>
             <DateDiv>
               <div>날짜 : {postObj.date}</div>
@@ -142,8 +143,7 @@ function DetailPost() {
               <div>제목 : {postObj.title}</div>
             </TitleDiv>
             <ImgDiv>
-              {/* <div>{postObj.imgurl}</div> */}
-              <img alt="" scr={postObj.imgurl}></img>
+              <img alt="" src={postObj.image} style={{width:"260px", height:"175px"}}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 :  {postObj.sayme}</div>

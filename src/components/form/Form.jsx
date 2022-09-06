@@ -9,7 +9,6 @@ function Form() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
@@ -17,8 +16,10 @@ function Form() {
   const [sayme, setSayme] = useState("");
   const [content, setContent] = useState("");
 
+  const userId = localStorage.getItem('name');
+
   const postWithoutImage = {
-    name: name,
+    user_name: userId,
     date: date,
     title: title,
     sayme: sayme,
@@ -43,7 +44,6 @@ function Form() {
 
     navigate('/');
 
-    setName("");
     setDate("");
     setTitle("");
     setImage();
@@ -60,11 +60,8 @@ function Form() {
         <label>작성자</label>
         <input 
         type='text' 
-        name='name' 
-        onChange={(e)=>{setName(e.target.value);}}
-        value={name}
-        required 
-        placeholder="이름을 입력해주세요."
+        name='user_name' 
+        value={userId}
         maxLength={10}/>
         </NameDiv>
         <DateDiv>
@@ -87,7 +84,7 @@ function Form() {
           onChange={onChangeImage}
           />
           <img 
-          alt=""
+          alt="이미지를 업로드 해주세요."
           src={preview} 
           style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
         </ImgDiv>
