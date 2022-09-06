@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-// import styled from 'styled-components';
 import Layout from '../components/layout/Layout'
 import PostList from '../components/postlist/PostList';
 
