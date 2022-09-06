@@ -1,16 +1,59 @@
 {
-  "comments": [
+  "posts": [
     {
-      "name": "여기는",
-      "content": "2번페이지",
-      "postId": "2",
+      "name": "이혜림",
+      "date": "2022-09-05",
+      "title": "제목입니다",
+      "imgurl": "C:\\fakepath\\멋쟁이토마토.jpeg",
+      "sayme": "한마디 넣기",
+      "desc": "내용도 넣어요",
+      "id": 1
+    },
+    {
+      "name": "2번",
+      "date": "2022-09-06",
+      "title": "2번2번2번",
+      "imgurl": "C:\\fakepath\\egg.jpeg",
+      "sayme": "2번2번2번",
+      "desc": "2번2번2번",
+      "id": 2
+    },
+    {
+      "name": "3번",
+      "date": "2022-09-07",
+      "title": "3번3번",
+      "imgurl": "C:\\fakepath\\questionmark.jpeg",
+      "sayme": "3번3번",
+      "desc": "3번3번",
+      "id": 3
+    },
+    {
+      "name": "4번",
+      "date": "2022-09-08",
+      "title": "4번4번",
+      "imgurl": "C:\\fakepath\\greenfolder.jpeg",
+      "sayme": "4번4번",
+      "desc": "4번4번",
+      "id": 4
+    },
+    {
+      "name": "5번",
+      "date": "2022-09-09",
+      "title": "5번",
+      "imgurl": "C:\\fakepath\\tape.jpeg",
+      "sayme": "5번",
+      "desc": "5번",
       "id": 5
     }
   ],
-  "login": [
+  "comments": [
     {
-      "name": "여기는",
-      "password": "2번"
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     }
-  ]
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }
