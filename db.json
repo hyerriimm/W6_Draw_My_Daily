@@ -33,9 +33,16 @@
   ],
   "comments": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "ㅁㄴㄹ",
+      "content": "ㄷㅈㄷ",
+      "postId": "2",
+      "id": 3
+    },
+    {
+      "name": "ee",
+      "content": "ww",
+      "postId": "1",
+      "id": 5
     }
   ],
   "profile": {

@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { __login } from "../../redux/modules/users";
+import Form from "react-bootstrap/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -26,14 +28,39 @@ const LoginForm = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    console.log(user.name)
     dispatch(__login(user));
     window.alert("로그인합니다");
     navigate("/");
   };
 
   return (
-    <div>
-      <div>
+    <Container >
+      <Form  onSubmit={onSubmitHandler}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>ID</Form.Label>
+          <Input  onChange={onChangeName} style={{ width: "200px" }} type="text" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label >Password</Form.Label>
+          <Input onChange={onChangePassword} style={{ width: "200px" }} type="password" />
+        </Form.Group>
+        <div style={{ display: "flex" }}>
+          <Button bgColor="#ffd43b">로그인</Button>
+          <Button
+            onClick={() => {
+              navigate("/signup");
+            }}
+            bgColor="#ff6b6b"
+            style={{ marginLeft: "20px" }}
+          >
+            회원가입
+          </Button>
+        </div>
+      </Form>
+
+      {/* <div>
         <RegisterForm onSubmit={onSubmitHandler}>
           <div
             style={{
@@ -73,16 +100,21 @@ const LoginForm = () => {
             <Button onClick={()=>{navigate("/signup")}} bgColor="#e599f7">회원가입</Button>
           </div>
         </RegisterForm>
-      </div>
-    </div>
+      </div> */}
+    </Container >
   );
 };
 
-const RegisterForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-`;
+// const RegisterForm = styled.form`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   min-height: 100vh;
+// `;
 
+const Container = styled.div`
+display: felx;
+align-items: center;
+justify-content: center;
+`
 export default LoginForm;
