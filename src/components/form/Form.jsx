@@ -68,6 +68,7 @@ function Form() {
         maxLength={10}
         disabled
         />
+
         </NameDiv>
 
         <DateDiv>

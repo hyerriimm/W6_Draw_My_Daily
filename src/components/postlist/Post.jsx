@@ -14,7 +14,7 @@ function Post({post}) {
       >
         <div>날짜ㅣ {post?.date}</div>
         <hr style={{ margin: 1 }}></hr>
-        <img alt="" src={post?.image} style={{width:"260px", height:"175px"}}></img>
+        <img alt="" src={post?.imageURL} style={{width:"260px", height:"175px"}}></img>
         <hr style={{ margin: 1 }}></hr>
         <div>제목ㅣ {post?.title}</div>
         <hr style={{ margin: 1 }}></hr>
