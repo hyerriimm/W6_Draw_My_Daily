@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { logout } from "../../redux/modules/users";
 import { useDispatch } from 'react-redux';
-
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    
+
+
+    const logIn = localStorage.getItem("token1")
 
 
     return (
@@ -18,14 +21,18 @@ function Header() {
         >
           ↩ Home
         </HomeBtn>
-        <StText>Draw My Daily</StText>
+        <StText >Draw My Daily</StText>
         <div>
-          <Stbutton>My Page</Stbutton>
-          <Stbutton 
-          onClick={()=>{navigate("/login")}}>Login</Stbutton>
-          <Stbutton 
-          onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());
-          navigate("/")}}>Logout</Stbutton>
+
+          {logIn == null                                           
+          ? <Stbutton   
+          onClick={()=>{navigate("/login")}}>Login</Stbutton>              
+          :
+          <><Stbutton 
+          onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());  
+          navigate("/")}}>Logout</Stbutton> <Stbutton onClick={()=>{navigate("/mypage")}}>My Page</Stbutton></>
+           }
+          
         </div>
       </StContainer>
     );

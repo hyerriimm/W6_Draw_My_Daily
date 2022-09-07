@@ -4,6 +4,7 @@ import Add from '../pages/Add';
 import Detail from '../pages/Detail';
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import MyPage from "../pages/MyPage";
 
 
 
@@ -15,6 +16,7 @@ const Router = () => {
             <Route path ="/detail/:id" exact element={<Detail/>}/>
             <Route path ="/login" exact element={<Login/>}/>
             <Route path ="/signup" exact element={<SignUp/>}/>
+            <Route path ="/mypage" exact element={<MyPage/>}/>
         </Routes>
     )
 }
