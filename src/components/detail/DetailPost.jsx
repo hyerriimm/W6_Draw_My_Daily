@@ -30,8 +30,8 @@ function DetailPost() {
     });
     // console.log(postObj);
 
-  const [user_name, setUser_Name] = useState(postObj.user_name);
-  const [date, setDate] = useState(postObj.date);
+  const [user_name, setUser_Name] = useState(postObj?.user_name);
+  const [date, setDate] = useState(postObj?.date);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState("");

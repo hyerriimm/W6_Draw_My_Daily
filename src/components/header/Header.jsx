@@ -5,7 +5,6 @@ import { logout } from "../../redux/modules/users";
 import { useDispatch } from 'react-redux';
 import { GoHome } from "react-icons/go";
 
-
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,17 +21,19 @@ function Header() {
           <GoHome size='30' color='rgb(68, 155, 255)'/>
           <StText>Draw My Daily : )</StText>
         </HomeBtn>
+
         <div>
-          {logIn ==null
-          ? false
-          : <Stbutton>My Page</Stbutton>}
-          {logIn == null                                                       //조건
+          {logIn == null                                           
           ? <Stbutton   
-          onClick={()=>{navigate("/login")}}>Login</Stbutton>                 //ture
+          onClick={()=>{navigate("/login")}}>Login</Stbutton>              
           :
-          <Stbutton 
-          onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());     //false
-          navigate("/")}}>Logout</Stbutton> }
+          <>
+            <Stbutton 
+            onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());  
+            navigate("/")}}>Logout</Stbutton> 
+            <Stbutton onClick={()=>{navigate("/mypage")}}>My Page</Stbutton>
+          </>
+           }
         </div>
       </StContainer>
     );

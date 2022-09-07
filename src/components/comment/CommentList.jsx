@@ -26,9 +26,9 @@ function CommentList() {
 
   // console.log(data)
 
-  let comments = data.filter(function (x) {
-    return x.postId == id;
-  });
+  // let comments = data.filter(function (x) {
+  //   return x.postId == id;
+  // });
 
   return (
     <CommentContainer>

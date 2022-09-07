@@ -9,7 +9,7 @@ export const __login = createAsyncThunk(
           console.log(payload);
           const data =  await axios.post("http://3.36.71.186:8080/api/users/login", payload);
           console.log(data);
-
+          
           localStorage.setItem("token1", data.headers.authorization)
           localStorage.setItem("token2", data.headers.refreshtoken)
           localStorage.setItem("name",data.data.data.name)

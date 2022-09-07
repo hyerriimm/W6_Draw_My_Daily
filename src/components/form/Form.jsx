@@ -58,6 +58,7 @@ function Form() {
   return (
     <div>
       <form id='formid' onSubmit={onSubmitHandler}>
+
         <NameDiv>
         <label>작성자</label>
         <input 
@@ -66,6 +67,7 @@ function Form() {
         value={user_name}
         maxLength={10}/>
         </NameDiv>
+
         <DateDiv>
         <label>날짜</label>
         <input 
@@ -76,6 +78,7 @@ function Form() {
         value={date} 
         required />
         </DateDiv>
+
         <ImgDiv>
           <label>이미지 업로드</label>
           <input 
@@ -91,6 +94,8 @@ function Form() {
           src={preview ? preview : AddImage}
           style={{display:"block",margin:"0 auto", height:"300px"}}></img>
         </ImgDiv>
+
+
         <TitleDiv>
           <label>제목</label>
           <input 
@@ -102,6 +107,7 @@ function Form() {
           placeholder="제목을 입력해주세요." 
           maxLength={15}/>
         </TitleDiv>
+
         <WordDiv>
           <label>수고한 자신에게 한마디</label>
           <input 
@@ -113,6 +119,7 @@ function Form() {
           placeholder="나에게 해주는 한마디를 입력해주세요."
           maxLength={15}/>
         </WordDiv>
+
         <ContentDiv>
           <label>내용</label>
           <textarea 
@@ -124,6 +131,7 @@ function Form() {
           rows="10"
           maxLength={300}/>
         </ContentDiv>
+
         <PostingBtnDiv>
             <button>일기 추가</button>
         </PostingBtnDiv>

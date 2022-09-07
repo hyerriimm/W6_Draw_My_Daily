@@ -2,8 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from '../components/layout/Layout'
 import PostList from '../components/postlist/PostList';
+
 import TitleImage from '../assets/images/titleimage.jpg'
 import { VscBellDot } from "react-icons/vsc";
+
 
 function Home() {
   let navigate = useNavigate();
