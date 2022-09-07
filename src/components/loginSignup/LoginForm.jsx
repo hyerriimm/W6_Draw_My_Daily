@@ -27,11 +27,11 @@ const LoginForm = () => {
   };
 
   const onSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log(user.name)
+    // console.log(user.name)
     dispatch(__login(user));
     window.alert("로그인합니다");
     navigate("/");
+    window.location.reload()
   };
 
   return (

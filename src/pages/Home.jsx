@@ -2,14 +2,30 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Layout from '../components/layout/Layout'
 import PostList from '../components/postlist/PostList';
+// import { useEffect } from 'react';
+// import { __getPosts } from '../redux/modules/postsSlice';
+// import { useDispatch } from 'react-redux';
+
 
 function Home() {
   let navigate = useNavigate();
+
+  // const dispatch = useDispatch()
+
+  // useEffect(()=>{dispatch(__getPosts)},[])
+
+  const logIn = localStorage.getItem("token1")
   
   return (
     <Layout>
       <AddBtnDiv>
-      <button onClick={() => navigate('/add')}>일기 쓰기</button>
+
+        {logIn === null
+        ? <h1>회원에게만 글 작성이 가능합니다</h1>
+        : <button onClick={() => navigate('/add')}>일기 쓰기</button>
+        }
+      
+      
       </AddBtnDiv>
       <PostList />
     </Layout>

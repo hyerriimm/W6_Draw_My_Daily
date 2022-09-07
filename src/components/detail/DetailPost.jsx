@@ -25,8 +25,8 @@ function DetailPost() {
 
     console.log(postObj);
 
-  const [user_name, setUser_Name] = useState(postObj.user_name);
-  const [date, setDate] = useState(postObj.date);
+  const [user_name, setUser_Name] = useState(postObj?.user_name);
+  const [date, setDate] = useState(postObj?.date);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState("");
@@ -134,22 +134,22 @@ function DetailPost() {
               <button onClick={onDeleteHandler}>삭제</button>
             </BtnGroup>
             <NameDiv>
-              <div>작성자 : {postObj.user_name}</div>
+              <div>작성자 : {postObj?.user_name}</div>
             </NameDiv>
             <DateDiv>
-              <div>날짜 : {postObj.date}</div>
+              <div>날짜 : {postObj?.date}</div>
             </DateDiv>
             <TitleDiv>
-              <div>제목 : {postObj.title}</div>
+              <div>제목 : {postObj?.title}</div>
             </TitleDiv>
             <ImgDiv>
-              <img alt="" src={postObj.image} style={{width:"260px", height:"175px"}}></img>
+              <img alt="" src={postObj?.image} style={{width:"260px", height:"175px"}}></img>
             </ImgDiv>
             <WordDiv>
-              <div>수고한 자신에게 한마디 :  {postObj.sayme}</div>
+              <div>수고한 자신에게 한마디 :  {postObj?.sayme}</div>
             </WordDiv>
             <ContentDiv>
-              <div>내용: {postObj.content}</div>
+              <div>내용: {postObj?.content}</div>
             </ContentDiv>
           </div>
         )}

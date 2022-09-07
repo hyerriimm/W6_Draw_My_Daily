@@ -3,10 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import { logout } from "../../redux/modules/users";
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
+    
+
+    useEffect(()=> {}, []);
+    
+
+    const logIn = localStorage.getItem("token1")
 
 
     return (
@@ -20,12 +27,20 @@ function Header() {
         </HomeBtn>
         <StText>Draw My Daily</StText>
         <div>
-          <Stbutton>My Page</Stbutton>
+          {logIn ==null
+          ? false
+          : <Stbutton>My Page</Stbutton>}
+          
+
+          {logIn == null                                                       //조건
+          ? <Stbutton   
+          onClick={()=>{navigate("/login")}}>Login</Stbutton>                 //ture
+          :
           <Stbutton 
-          onClick={()=>{navigate("/login")}}>Login</Stbutton>
-          <Stbutton 
-          onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());
-          navigate("/")}}>Logout</Stbutton>
+          onClick={()=>{window.alert("로그아웃합니다");dispatch(logout());     //false
+          navigate("/")}}>Logout</Stbutton> }
+          
+          
         </div>
       </StContainer>
     );
