@@ -21,5 +21,5 @@ const StLayout = styled.div`
   min-width: 800px;
   height: 100vh;
   margin: 0 auto;
-  background-color: #fff8f0;
+  /* background-color: #fff8f0; */;
 `;

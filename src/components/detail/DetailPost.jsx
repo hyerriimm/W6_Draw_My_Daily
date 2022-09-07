@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import {useNavigate, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import { __getPosts, __updatePosts, __deletePosts } from '../../redux/modules/postsSlice';
+import AddImage from '../../assets/images/addimage.png';
+import { VscTrash } from "react-icons/vsc";
+import { VscEdit } from "react-icons/vsc";
 
 function DetailPost() {
     const dispatch = useDispatch();
@@ -11,8 +14,11 @@ function DetailPost() {
     const [isEditMode, setIsEditMode] = useState(false);
     const { isLoading, error, posts } = useSelector((state) => state.posts);
 
+    const logIn = localStorage.getItem("token1");
+    const name = localStorage.getItem("name");
+
     useEffect(()=> {
-      dispatch(__getPosts());
+      dispatch(__getPosts()); 
     }, [dispatch, isEditMode]);
 
     let postObj = posts.find((post)=>{
@@ -22,8 +28,7 @@ function DetailPost() {
         return null
       }
     });
-
-    console.log(postObj);
+    // console.log(postObj);
 
   const [user_name, setUser_Name] = useState(postObj?.user_name);
   const [date, setDate] = useState(postObj?.date);
@@ -32,9 +37,19 @@ function DetailPost() {
   const [preview, setPreview] = useState("");
   const [sayme, setSayme] = useState("");
   const [content, setContent] = useState("");
+
+  const resetStates = () => {
+    setUser_Name("");
+    setDate("");
+    setTitle("");
+    setImage();
+    setPreview("");
+    setSayme("");
+    setContent("");
+  };
   
   const onChangeImg = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     setImage(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
   };
@@ -50,14 +65,15 @@ function DetailPost() {
     } else if (window.confirm('수정사항을 저장하시겠습니까?'))
       {
         const formData = new FormData();
-        formData.append('image', image);
         formData.append('user_name', user_name);
         formData.append('date', date);
         formData.append('title', title);
+        formData.append('image', image);
         formData.append('sayme', sayme);
         formData.append('content', content);
         dispatch(__updatePosts(formData));
         setIsEditMode(false);
+        resetStates();
     }
   };
 
@@ -108,8 +124,8 @@ function DetailPost() {
               />
               <img 
               alt="이미지를 업로드 해주세요."
-              src={preview} 
-              style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
+              src={preview ? preview : AddImage} 
+              style={{display:"block",margin:"0 auto", height:"300px"}}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 : </div>
@@ -130,8 +146,13 @@ function DetailPost() {
         ) : (
           <div>
             <BtnGroup>
-              <button onClick={()=>{setIsEditMode(true);}}>수정</button>
-              <button onClick={onDeleteHandler}>삭제</button>
+              {logIn == null || name !== postObj.user_name ? false :
+              (
+                <>
+              <button onClick={()=>{setIsEditMode(true);}}><VscEdit size='20' color='#fff' /></button>
+              <button onClick={onDeleteHandler}><VscTrash size='20' color='#fff' /></button>
+                </>
+              )}
             </BtnGroup>
             <NameDiv>
               <div>작성자 : {postObj?.user_name}</div>
@@ -143,7 +164,7 @@ function DetailPost() {
               <div>제목 : {postObj?.title}</div>
             </TitleDiv>
             <ImgDiv>
-              <img alt="" src={postObj?.image} style={{width:"260px", height:"175px"}}></img>
+              <img alt="" src={postObj?.image} style={{display:"block", margin:"0 auto", maxHeight:"500px"}}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 :  {postObj?.sayme}</div>
@@ -160,14 +181,23 @@ function DetailPost() {
 export default DetailPost;
 
 const BtnGroup = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    button {
-        margin: 8px;
-    }
-`
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: transparent;
+    background-color: #7fb2ff;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 5px 10px;
+      margin: 8px;
+  }
+`;
 
 const NameDiv = styled.div`
+  font-size: large;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
@@ -175,6 +205,8 @@ const NameDiv = styled.div`
 `;
 
 const DateDiv = styled.div`
+  font-size: large;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
@@ -193,19 +225,26 @@ const ImgDiv = styled.div`
 `;
 
 const TitleDiv = styled.div`
+font-size: large;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
 `;
 
 const WordDiv = styled.div`
+  font-size: large;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
 `;
 
 const ContentDiv = styled.div`
+  font-size: large;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   padding: 5px 20px;
+  margin-bottom: 50px;
 `;
