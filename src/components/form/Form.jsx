@@ -65,7 +65,9 @@ function Form() {
         type='text' 
         name='user_name' 
         value={user_name}
-        maxLength={10}/>
+        maxLength={10}
+        disabled
+        />
         </NameDiv>
 
         <DateDiv>
