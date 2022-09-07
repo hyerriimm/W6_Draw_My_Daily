@@ -164,7 +164,7 @@ function DetailPost() {
               <div>제목 : {postObj?.title}</div>
             </TitleDiv>
             <ImgDiv>
-              <img alt="" src={postObj?.image} style={{display:"block", margin:"0 auto", maxHeight:"500px"}}></img>
+              <img alt="" src={postObj?.imageURL} style={{display:"block", margin:"0 auto", maxHeight:"500px"}}></img>
             </ImgDiv>
             <WordDiv>
               <div>수고한 자신에게 한마디 :  {postObj?.sayme}</div>

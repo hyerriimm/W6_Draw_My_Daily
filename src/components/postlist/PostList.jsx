@@ -12,7 +12,7 @@ function PostList() {
 
   useEffect(() => {
     dispatch(__getPosts());
-  }, [dispatch]);
+  },[posts.length]);
 
   if (isLoading) {
     return <Loading>로딩 중•••</Loading>;
@@ -35,7 +35,7 @@ function PostList() {
   return (
     <StContainer>
       {posts
-        ?.slice()
+        .slice()
         .reverse()
         .map((post) => {
           return <Post key={uuidv4()} post={post} />;
