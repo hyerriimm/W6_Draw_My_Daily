@@ -19,7 +19,7 @@ function Header() {
           }}
         >
           <GoHome size='30' color='rgb(68, 155, 255)'/>
-          <StText>Draw My Daily : )</StText>
+          <StText>Draw My Daily :</StText>
         </HomeBtn>
 
         <div>

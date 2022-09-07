@@ -8,6 +8,7 @@ import { useState } from "react";
 import { __login } from "../../redux/modules/users";
 import Form from "react-bootstrap/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -35,86 +36,53 @@ const LoginForm = () => {
   };
 
   return (
-    <Container >
-      <Form  onSubmit={onSubmitHandler}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>ID</Form.Label>
-          <Input  onChange={onChangeName} style={{ width: "200px" }} type="text" />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label >Password</Form.Label>
-          <Input onChange={onChangePassword} style={{ width: "200px" }} type="password" />
-        </Form.Group>
-        <div style={{ display: "flex" }}>
-          <Button bgColor="#ffd43b">로그인</Button>
-          <Button
+<div className="wrapper fadeInDown">
+  <div id="formContent">
+    <h2 className="active"> LogIn </h2>
+    <div className="fadeIn first">
+    </div>
+    <form>
+      <input
+        type="text"
+        id="login"
+        className="fadeIn second"
+        name="login"
+        placeholder="login"
+        onChange={onChangeName}
+      />
+      <input
+        type="password"
+        id="password"
+        className="fadeIn third"
+        name="login"
+        placeholder="password"
+        onChange={onChangePassword} 
+      />
+              <div style={{ display: "flex", height:"40px",margin:"20px" }}>
+          <Button onClick={onSubmitHandler} width="200px" bgColor="#ffd43b">LogIn</Button>
+          <Button width="200px"
             onClick={() => {
               navigate("/signup");
             }}
             bgColor="#ff6b6b"
             style={{ marginLeft: "20px" }}
           >
-            회원가입
+            SignUp
           </Button>
         </div>
-      </Form>
+      
+    
+    </form>
+    <div id="formFooter">
+     
+    </div>
+  </div>
+</div>
 
-      {/* <div>
-        <RegisterForm onSubmit={onSubmitHandler}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                fontSize: "15px",
-              }}
-            >
-              <p>아이디</p>
-              <p>비밀번호</p>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "300px",
-                border: "10px",
-                padding: "0",
-              }}
-            >
-              <Input type="text" onChange={onChangeName} />
-              <Input type="password" onChange={onChangePassword} />
-            </div>
-          </div>
-          <div
-            className="btnBox"
-            style={{ display: "flex", flexDirection: "column", margin: "20px" }}
-          >
-            <Button bgColor="#e599f7">로그인</Button>
-            <Button onClick={()=>{navigate("/signup")}} bgColor="#e599f7">회원가입</Button>
-          </div>
-        </RegisterForm>
-      </div> */}
-    </Container >
+
+   
   );
 };
 
-// const RegisterForm = styled.form`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   min-height: 100vh;
-// `;
 
-const Container = styled.div`
-display: felx;
-align-items: center;
-justify-content: center;
-`
 export default LoginForm;

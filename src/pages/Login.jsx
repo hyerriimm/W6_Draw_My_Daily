@@ -4,7 +4,6 @@ import Layout from '../components/layout/Layout'
 
 const LoginPage = () => {
   return (
-
       <Layout>
         <LoginForm />
         </Layout>

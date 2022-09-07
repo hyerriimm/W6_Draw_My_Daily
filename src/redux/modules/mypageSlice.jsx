@@ -7,7 +7,7 @@ export const __getMyPosts = createAsyncThunk(
     try {
       const token1 = localStorage.getItem("token1");
       const token2 = localStorage.getItem("token2")
-      const data = await axios.get(`http://3.36.71.186:8080/api/auth/mypage/${payload}`,{
+      const data = await axios.get(`http://3.36.71.186:8080/api/auth/mypage`,{
         headers:{
           Authorization: token1,
           Refreshtoken: token2
