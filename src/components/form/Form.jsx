@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { __createPostImage,__createPosts } from '../../redux/modules/postsSlice';
+import { __createPosts } from '../../redux/modules/postsSlice';
+import AddImage from '../../assets/images/addimage.png';
 
 function Form() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // const userId = localStorage.getItem('name');
+  const [user_name, setUser_Name] = useState(localStorage.getItem('name'));
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
@@ -16,18 +19,18 @@ function Form() {
   const [sayme, setSayme] = useState("");
   const [content, setContent] = useState("");
 
-  const userId = localStorage.getItem('name');
-
-  const postWithoutImage = {
-    user_name: userId,
-    date: date,
-    title: title,
-    sayme: sayme,
-    content: content,
+  const resetStates = () => {
+    setUser_Name("");
+    setDate("");
+    setTitle("");
+    setImage();
+    setPreview("");
+    setSayme("");
+    setContent("");
   };
 
   const onChangeImage = (e) => {
-    console.log(e.target.files);
+    // console.log(e.target.files);
     setImage(e.target.files[0]);
     setPreview(URL.createObjectURL(e.target.files[0]));
     // FOR BUG IN CHROME
@@ -36,20 +39,19 @@ function Form() {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const formDataImage = new FormData();
-    formDataImage.append('image', image);
 
-    dispatch(__createPostImage(formDataImage));
-    dispatch(__createPosts(postWithoutImage));
+    const formData = new FormData();
+    formData.append('user_name', user_name);
+    formData.append('date', date);
+    formData.append('title', title);
+    formData.append('image', image);
+    formData.append('sayme', sayme);
+    formData.append('content', content);
+
+    dispatch(__createPosts(formData));
 
     navigate('/');
-
-    setDate("");
-    setTitle("");
-    setImage();
-    setPreview("");
-    setSayme("");
-    setContent("");
+    resetStates();
   };
 
 
@@ -61,7 +63,7 @@ function Form() {
         <input 
         type='text' 
         name='user_name' 
-        value={userId}
+        value={user_name}
         maxLength={10}/>
         </NameDiv>
         <DateDiv>
@@ -82,11 +84,12 @@ function Form() {
           name='image'
           className='imginput'
           onChange={onChangeImage}
+          required
           />
           <img 
           alt="이미지를 업로드 해주세요."
-          src={preview} 
-          style={{display:"block",margin:"0 auto",width:"300px", height:"300px"}}></img>
+          src={preview ? preview : AddImage}
+          style={{display:"block",margin:"0 auto", height:"300px"}}></img>
         </ImgDiv>
         <TitleDiv>
           <label>제목</label>
@@ -184,10 +187,13 @@ padding: 5px 20px;
 button {
     background-color: #8ab38c;
     color: white;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: 10px;
     border: transparent;
     border-radius: 10px;
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 40px;
     :hover {
         box-shadow: 1px 1px 5px #c7c7c7;
     }

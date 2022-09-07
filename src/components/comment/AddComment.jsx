@@ -30,7 +30,7 @@ function AddComment() {
     <>
       <AddFormContainer onSubmit={addComment}>
         User
-        <Input value = {userID} />
+        <Input value = {userID} disabled/>
         내용
         <Input
           width="500px"

@@ -23,7 +23,7 @@ function Post({post}) {
           <div>"{post?.sayme}"</div>
         </Sayme>
         <DescImg>
-          <div> ..... 내 용 더 보 기</div>
+          <div> .... 내 용 더 보 기</div>
         </DescImg>
       </StTodo>
     );
@@ -47,9 +47,12 @@ font-size: 17px;
 box-sizing: border-box;
 /* text-align: center; */
 vertical-align: top;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 cursor: pointer;
 &:hover{
-  box-shadow: 1px 1px 10px #c4c4c4;
+  box-shadow: 1px 1px 20px #b8b8b8;
+  transform: scale(1.03);
+    transition : transform 0.2s ease .1s;
 }
 `;
 
