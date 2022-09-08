@@ -47,6 +47,9 @@ export const __deletePosts = createAsyncThunk(
           "RefreshToken":refreshToken,
           }
       });
+      // console.log(data);
+      // console.log(data.data);
+      // 삭제한 게시글 아이디를 응답에 넣어달라고 해서 받아옴!
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -58,14 +61,15 @@ export const __updatePosts = createAsyncThunk(
   "posts/updatePosts",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post(`http://3.36.71.186:8080/api/auth/posts/${payload}`, payload, { 
+      const data = await axios.put(`http://3.36.71.186:8080/api/auth/posts/${payload.id}`, payload.formData, { 
       headers: {
       "Content-Type":"multipart/form-data",
       "Authorization":token,
       "RefreshToken":refreshToken,
       }});
+      // console.log(data);
       alert("그림일기 수정 완료!")
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data.data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
     }
@@ -77,6 +81,17 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState: {
     posts: [],
+    detail:{
+      // user_name도 달라고 하긴 해야함
+      id: 0,
+      date:'',
+      title:'',
+      imageURL:'',
+      sayMe:'',
+      content:'',
+      createdAt:'',
+      comments: [],
+    },
     isLoading: false,
     error: null,
   },
@@ -115,8 +130,8 @@ export const postsSlice = createSlice({
     })
     .addCase(__deletePosts.fulfilled, (state, action) => {
       state.isLoading = false; 
-      // let index = state.posts.findIndex((post) => post.id === action.payload);
-      // state.posts.splice(index, 1);
+      let index = state.posts.findIndex((post) => post.id === action.payload);
+      state.posts.splice(index, 1);
     })
     .addCase(__deletePosts.rejected, (state, action) => {
       state.isLoading = false; 
@@ -129,8 +144,9 @@ export const postsSlice = createSlice({
     })
     .addCase(__updatePosts.fulfilled, (state, action) => {
       state.isLoading = false; 
-      // let index = state.posts.findIndex((post) => post.id === action.payload.data.id);
-      // state.posts.splice(index, 1, action.payload.data);
+      let index = state.posts.findIndex((post) => post.id === action.payload.id);
+      state.posts.splice(index, 1, action.payload);
+      // state.detail.push(action.payload);
     })
     .addCase(__updatePosts.rejected, (state, action) => {
       state.isLoading = false; 
