@@ -45,7 +45,7 @@ function Form() {
     formData.append('date', date);
     formData.append('title', title);
     formData.append('image', image);
-    formData.append('sayme', sayme);
+    formData.append('sayMe', sayme);
     formData.append('content', content);
 
     dispatch(__createPosts(formData));

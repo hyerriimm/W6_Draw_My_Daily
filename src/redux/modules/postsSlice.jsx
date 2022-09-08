@@ -20,7 +20,6 @@ export const __getPosts = createAsyncThunk(
 export const __createPosts = createAsyncThunk(
   "posts/createPosts",
   async (payload, thunkAPI) => {
-    console.log(payload)
     try {
       const data = await axios.post("http://3.36.71.186:8080/api/auth/posts", payload, {
         headers: {
