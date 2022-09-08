@@ -111,7 +111,7 @@ const dispatch = useDispatch()
            }
           <input
             type="password"
-            id="password"
+            id="Confirm password"
             className="fadeIn third"
             name="login"
             placeholder="Confirm password"
