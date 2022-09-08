@@ -18,7 +18,8 @@ function AddComment() {
 
   const addComment = (e) => {
     e.preventDefault();
-    dispatch(_addComnents({ name, content, postId }));
+    dispatch(_addComnents({ name, content, postId }))
+    setContent("");
   };
 
   const userID = localStorage.getItem("name")
@@ -28,19 +29,22 @@ function AddComment() {
 
   return (
     <>
-      <AddFormContainer onSubmit={addComment}>
+      <AddFormContainer onSubmit={ addComment }>
         User
-        <Input value = {userID} disabled/>
+        <Input style ={{width:"100px"}} value = {userID} disabled/>
         내용
         <Input
-          width="500px"
+          required
+          value={content}
+          maxLength = {50}
+          style = {{width:"600px"}}
           type="text"
           onChange={(e) => {
             setContent(e.target.value);
           }}
         ></Input>
         <Button bgColor="#a5d8ff">댓글달기</Button>
-        {/* <input  type="file" accept="image/*"/> */}
+
       </AddFormContainer>
      
     </>

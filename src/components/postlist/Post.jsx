@@ -20,7 +20,7 @@ function Post({post}) {
         <hr style={{ margin: 1 }}></hr>
         <Sayme>
           <div>수고한 자신에게 한마디</div>
-          <div>"{post?.sayme}"</div>
+          <div>"{post?.sayMe}"</div>
         </Sayme>
         <DescImg>
           <div> .... 내 용 더 보 기</div>

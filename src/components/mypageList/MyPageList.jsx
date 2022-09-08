@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const MyPageList = () => {
   const {  posts } = useSelector((state) => state.posts);
-  console.log(posts)
+  // console.log(posts)
   const dispatch = useDispatch()
 
   const name = localStorage.getItem("name")
@@ -22,7 +22,7 @@ const MyPageList = () => {
   let filterdPost = posts.filter(function (x) {
     return x.user_name == name;
   });
-  console.log(filterdPost.length)
+  // console.log(filterdPost.length)
 
   return (
     <div>

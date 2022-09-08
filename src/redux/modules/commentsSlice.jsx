@@ -13,7 +13,7 @@ export const _getComnents = createAsyncThunk(
   async (payload, thunkAPI) => {
     const token1 = localStorage.getItem("token1");
     const token2 = localStorage.getItem("token2")
-    console.log(payload)
+    // console.log(payload)
     try {
       const data = await axios.get(`http://3.36.71.186:8080/api/comments/${payload}`, {
         headers:{
@@ -42,7 +42,7 @@ export const _addComnents = createAsyncThunk(
           Refreshtoken: token2
         }
       });
-      console.log(payload)
+      // console.log(payload)
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -71,6 +71,29 @@ export const _deleteComnents = createAsyncThunk(
     }
   }
 );
+
+export const _editComnents = createAsyncThunk(
+  "editComments",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      const token1 = localStorage.getItem("token1");
+      const token2 = localStorage.getItem("token2");
+      const data = await axios.put(`http://3.36.71.186:8080/api/auth/comments/${payload}`,payload,{
+          headers:{
+            Authorization: token1,
+            Refreshtoken: token2
+          }
+        });
+      
+
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 
 export const commentssSlice = createSlice({
   name: "comments",

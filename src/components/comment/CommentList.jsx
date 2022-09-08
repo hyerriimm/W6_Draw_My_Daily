@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { v4 as uuidv4 } from 'uuid';
+import { CgPen } from "react-icons/si";
 
 function CommentList() {
   const data = useSelector((state) => state.comments.comments);
@@ -32,9 +33,8 @@ function CommentList() {
 
   return (
     <CommentContainer>
+     <h3>commentList</h3> 
       <AddComment />
-      <h2>Commnts List✏</h2>
-
       {data.map((data) => (
         <CommentCard data={data} key={uuidv4()} />
       ))}

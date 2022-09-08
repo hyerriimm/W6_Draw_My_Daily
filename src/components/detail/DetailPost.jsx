@@ -146,7 +146,7 @@ function DetailPost() {
         ) : (
           <div>
             <BtnGroup>
-              {logIn == null || name !== postObj.user_name ? false :
+              {logIn == null || name !== postObj?.user_name ? false :
               (
                 <>
               <button onClick={()=>{setIsEditMode(true);}}><VscEdit size='20' color='#fff' /></button>
