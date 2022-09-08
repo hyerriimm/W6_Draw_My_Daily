@@ -13,7 +13,7 @@ export const _getComnents = createAsyncThunk(
   async (payload, thunkAPI) => {
     const token1 = localStorage.getItem("token1");
     const token2 = localStorage.getItem("token2")
-    console.log(payload)
+    // console.log(payload)
     try {
       const data = await axios.get(`http://3.36.71.186:8080/api/comments/${payload}`, {
         headers:{

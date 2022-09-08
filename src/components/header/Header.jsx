@@ -19,7 +19,7 @@ function Header() {
           }}
         >
           <GoHome size='30' color='rgb(68, 155, 255)'/>
-          <StText>Draw My Daily :</StText>
+          <StText>Draw My Daily</StText>
         </HomeBtn>
 
         <div>
@@ -42,36 +42,35 @@ function Header() {
 export default Header;
 
 const StContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 40px;
-    padding: 10px;
-    /* background-color: #e7f3ff; */
-    background-color: #ffffe7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 10px;
+  background-color: #ffffe7;
+  /* background-color: #e7f3ff; */
 `;
 
 const HomeBtn = styled.button`
-    display: flex;
-    margin: 0 10px;
-    font-size: 17px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  display: flex;
+  margin: 0 10px;
+  font-size: 17px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const Stbutton = styled.button`
-    margin: 0 10px;
-    font-size: 17px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  margin: 0 10px;
+  font-size: 20px;
+  font-weight: bolder;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const StText = styled.div`
-    /* margin: 0 20px; */
-    /* margin-left: 80px; */
-    margin-left: 10px;
-    font-size: 20px;
-    /* font-style: italic; */
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bolder;
 `;

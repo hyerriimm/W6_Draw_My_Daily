@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR&display=swap');
 
 /* BASIC */
 
-html {
+/* html {
   background-color: #ffffe7;
-}
+} */
 
 body {
   font-family: "Poppins", sans-serif;
+  font-family: 'Gowun Dodum', sans-serif;
   height: 100vh;
 }
 

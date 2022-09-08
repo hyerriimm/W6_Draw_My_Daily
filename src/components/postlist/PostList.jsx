@@ -8,7 +8,7 @@ import { __getPosts } from "../../redux/modules/postsSlice";
 function PostList() {
   const dispatch = useDispatch();
   const { isLoading, error, posts } = useSelector((state) => state.posts);
-  console.log(posts);
+  // console.log(posts);
 
   useEffect(() => {
     dispatch(__getPosts());
@@ -35,8 +35,8 @@ function PostList() {
   return (
     <StContainer>
       {posts
-        .slice()
-        .reverse()
+        // .slice()
+        // .reverse()
         .map((post) => {
           return <Post key={uuidv4()} post={post} />;
         })}
