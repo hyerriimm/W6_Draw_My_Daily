@@ -30,7 +30,6 @@ const LoginForm = () => {
   const onSubmitHandler = (e) => {
     // console.log(user.name)
     dispatch(__login(user));
-    window.alert("로그인합니다");
     navigate("/");
     window.location.reload()
   };

@@ -1,25 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import descImage1 from '../../assets/images/descImage1.png'
+
+
 const MyPageCard = ({post}) => {
 
-
+const navigate = useNavigate()
 
   return (
     <div>
         <StTodo
         onClick={() => {
-          // navigate(`/detail/${post?.id}`);
+          navigate(`/detail/${post?.id}`);
         }}
       >
         <div>날짜ㅣ {post?.date}</div>
         <hr style={{ margin: 1 }}></hr>
-        <img alt="" src={post?.image} style={{width:"260px", height:"175px"}}></img>
+        <img alt="" src={post?.imageURL} style={{width:"260px", height:"175px"}}></img>
         <hr style={{ margin: 1 }}></hr>
         <div>제목ㅣ {post?.title}</div>
         <hr style={{ margin: 1 }}></hr>
         <Sayme>
           <div>수고한 자신에게 한마디</div>
-          <div>"{post?.sayme}"</div>
+          <div>"{post?.sayMe}"</div>
         </Sayme>
         <DescImg>
           <div> ..... 내 용 더 보 기</div>
@@ -67,7 +71,7 @@ position: absolute;
 bottom: 10px;
 width: 260px;
 height: 100px;
-
+background-image: url(${descImage1});
 background-size: cover;
 div{
   font-size: 18px;

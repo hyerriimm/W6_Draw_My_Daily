@@ -5,7 +5,6 @@ import MyPageList from '../components/mypageList/MyPageList'
 const MyPage = () => {
   return (
     <Layout>
-      
       <MyPageList />
       </Layout>
     
