@@ -35,7 +35,7 @@ function DetailPost() {
   const [user_name, setUser_Name] = useState(postObj?.user_name);
   const [date, setDate] = useState(postObj?.date);
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState("");
   const [sayMe, setSayMe] = useState("");
   const [content, setContent] = useState("");
@@ -44,7 +44,7 @@ function DetailPost() {
     setUser_Name("");
     setDate("");
     setTitle("");
-    setImage();
+    setImage(null);
     setPreview("");
     setSayMe("");
     setContent("");

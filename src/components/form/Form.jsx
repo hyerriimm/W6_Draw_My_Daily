@@ -14,7 +14,7 @@ function Form() {
   const [user_name, setUser_Name] = useState(localStorage.getItem('name'));
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null); //용태매니저님이 null넣으라고 했음
   const [preview, setPreview] = useState("");
   const [sayMe, setSayMe] = useState("");
   const [content, setContent] = useState("");
@@ -23,7 +23,7 @@ function Form() {
     setUser_Name("");
     setDate("");
     setTitle("");
-    setImage(null);
+    setImage(null); //용태매니저님이 null넣으라고 했음
     setPreview("");
     setSayMe("");
     setContent("");
